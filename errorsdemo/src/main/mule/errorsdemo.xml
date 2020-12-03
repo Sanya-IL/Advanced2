@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:validation="http://www.mulesoft.org/schema/mule/validation"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="8a0541b9-e727-437d-9e0c-ade88865f2e9" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="errorsdemoFlow" doc:id="13906e90-8d23-46f7-9963-96eb018f5730" >
+		<http:listener doc:name="Listener" doc:id="4e0e6c22-8eee-4e26-b042-5f4de4d47897" config-ref="HTTP_Listener_config" path="/error"/>
+		<set-payload doc:name="Set Payload" doc:id="e16d16f3-a707-490f-b359-ef062ebc17fb" value="#[payload]"/>
+		<validation:is-not-blank-string doc:name="Is not blank string" doc:id="53cf79e7-1f76-4cb1-8dac-43601d493877" message="Validation error"/>
+		<validation:is-number numberType="INTEGER" doc:name="Is number" doc:id="2c8fb972-f268-475a-895f-c132f2d3c986" value="#[payload]" minValue="2" maxValue="14"/>
+		<ee:transform doc:name="Transform Message" doc:id="d45539b1-62b0-4ad2-a30a-f9a1754e47ed" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

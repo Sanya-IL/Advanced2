@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="assignment1-test-suite.xml" />
+	<munit:test name="assignment1-test-suite-assignment1FlowTest" doc:id="c77117f1-040b-4809-a296-e7dd3305cdbc" description="Test">
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="278765ff-d9ca-40b7-b29b-4a3ea4a3c0f7" >
+				<munit:payload value='{
+	"cid": 100,
+	"firstName": "Bruce", 
+	"lastName": "Wayne"
+}' mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to assignment1Flow" doc:id="11c95335-c7ea-46dd-9836-161dd387b19e" name="assignment1Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="224e0c79-df31-4145-b5bb-180739638313" message="check message" expression="#[payload]" is='#[MunitTools::notNullValue()]'/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
