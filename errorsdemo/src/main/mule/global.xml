@@ -6,7 +6,7 @@
 	<configuration doc:name="Configuration" doc:id="0762a926-c700-498e-8b2f-fe4e1f31fbe9" defaultErrorHandler-ref="globalError_Handler" />
 	<error-handler name="globalError_Handler" doc:id="cd66402c-215c-41ae-b666-a2bc67f1365b" >
 		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="2db0f56b-f653-45a4-b1e6-dedce97f8beb" when="error.errorType.identifier=='INVALID_NUMBER'">
-			<set-payload value="This is not valid number" doc:name="Set Payload" doc:id="77f64e58-a898-4869-8711-d678296e2189" />
+			<set-payload value="This is not Valid number" doc:name="Set Payload" doc:id="77f64e58-a898-4869-8711-d678296e2189" />
 		</on-error-continue>
 		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="7834cc32-339e-424d-92a8-ad811bd32af5" type="ANY">
 			<set-payload value="some error occurred" doc:name="Set Payload" doc:id="5fb3e30d-b1cf-4519-bdcd-c377db9bb70e" />
